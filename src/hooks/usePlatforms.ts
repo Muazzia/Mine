@@ -16,6 +16,8 @@ const usePlatforms = () => {
       apiClient
         .get<FetchResponse<Platform>>("/platforms")
         .then((res) => res.data),
+    initialData: { count: platforms.length, results: platforms },
+    staleTime: 24 * 60 * 60 * 1000,
   });
 };
 
