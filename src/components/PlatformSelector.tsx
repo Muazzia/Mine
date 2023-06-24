@@ -3,6 +3,7 @@ import { BsChevronDown } from "react-icons/bs";
 import usePlatforms, { Platform } from "../hooks/usePlatforms";
 import axios from "axios";
 import { api } from "../services/api-client";
+import useGetPlatformFromId from "../hooks/useGetPlatformFromId";
 
 interface Props {
   onSelectPlatform: (platform: number) => void;
@@ -12,16 +13,14 @@ interface Props {
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
-  const getName = () => {
-    return data.results.find((platform) => platform.id === selectedPlatform);
-  };
-  getName();
+  const platformOfId = useGetPlatformFromId(selectedPlatform);
+
   if (error) return null;
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {getName()?.name || "Platforms"}
+        {platformOfId?.name || "Platforms"}
       </MenuButton>
       <MenuList>
         {data?.results.map((platform) => (

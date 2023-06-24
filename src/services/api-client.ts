@@ -4,7 +4,7 @@ export interface FetchResponse<T> {
   count: number;
   results: T[];
   next: string | null;
-  previous: string;
+  previous: string | null;
 }
 
 export const api = axios.create({
