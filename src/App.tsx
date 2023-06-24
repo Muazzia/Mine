@@ -10,8 +10,8 @@ import { Platform } from "./hooks/usePlatforms";
 import { Genre } from "./hooks/useGenres";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
+  genre: number | null;
+  platform: number | null;
   sortOrder: string;
   searchText: string;
 }

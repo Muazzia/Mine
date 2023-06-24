@@ -14,7 +14,12 @@ const useGenres = () => {
   return useQuery<FetchResponse<Genre>, Error>({
     queryKey: ["genres"],
     queryFn: () => apiClient.getAll(),
-    initialData: { count: genres.length, results: genres },
+    initialData: {
+      count: genres.length,
+      results: genres,
+      next: "",
+      previous: "",
+    },
     staleTime: 24 * 60 * 60 * 1000, //24h
   });
 };

@@ -14,7 +14,12 @@ const usePlatforms = () => {
   return useQuery<FetchResponse<Platform>, Error>({
     queryKey: ["platform"],
     queryFn: () => apiClient.getAll(),
-    initialData: { count: platforms.length, results: platforms },
+    initialData: {
+      count: platforms.length,
+      results: platforms,
+      next: "",
+      previous: "",
+    },
     staleTime: 24 * 60 * 60 * 1000,
   });
 };
