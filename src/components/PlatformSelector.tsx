@@ -4,16 +4,14 @@ import usePlatforms, { Platform } from "../hooks/usePlatforms";
 import axios from "axios";
 import { api } from "../services/api-client";
 import useGetPlatformFromId from "../hooks/useGetPlatformFromId";
+import useAppStore from "../store";
 
-interface Props {
-  onSelectPlatform: (platform: number) => void;
-  selectedPlatform: number | null;
-}
-
-const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
+const PlatformSelector = () => {
   const { data, error } = usePlatforms();
+  const platform = useAppStore((s) => s.gameQuery.platform);
+  const setPlatform = useAppStore((s) => s.setPlatform);
 
-  const platformOfId = useGetPlatformFromId(selectedPlatform);
+  const platformOfId = useGetPlatformFromId(platform);
 
   if (error) return null;
 
@@ -24,10 +22,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
       </MenuButton>
       <MenuList>
         {data?.results.map((platform) => (
-          <MenuItem
-            onClick={() => onSelectPlatform(platform.id)}
-            key={platform.id}
-          >
+          <MenuItem onClick={() => setPlatform(platform.id)} key={platform.id}>
             {platform.name}
           </MenuItem>
         ))}
