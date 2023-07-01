@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useGames, { Game } from "../hooks/useGames";
+import useGames from "../hooks/useGames";
+import { Game } from "../entities/Game";
 import { Heading, Spinner, Text } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import ApiClient, { api } from "../services/api-client";

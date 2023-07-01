@@ -1,6 +1,7 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import usePlatforms, { Platform } from "../hooks/usePlatforms";
+import usePlatforms from "../hooks/usePlatforms";
+import { Platform } from "../entities/Platform";
 import axios from "axios";
 import { api } from "../services/api-client";
 import useGetPlatformFromId from "../hooks/useGetPlatformFromId";
