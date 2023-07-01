@@ -26,6 +26,9 @@ class ApiClient<T> {
       .get<FetchResponse<T>>(this.endpoint, { ...params })
       .then((res) => res.data);
   };
+  getGame = (id: string | number) => {
+    return api.get<T>(this.endpoint + "/" + id).then((res) => res.data);
+  };
 }
 
 export default ApiClient;

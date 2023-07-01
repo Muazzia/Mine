@@ -1,16 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "../services/api-client";
+import ApiClient from "../services/api-client";
+import { Game } from "./useGames";
 
-interface GameDescriptionProps {
-  id: number;
-  name: string;
-  description: string;
-}
+const api = new ApiClient<Game>("/games");
 
-const useGameDescription = (id: number | undefined) => {
+const useGameDescription = (slug: string) => {
   return useQuery({
-    queryKey: ["gamedes", id],
-    queryFn: () => api.get<GameDescriptionProps>(`/games/${id}`),
+    queryKey: ["gamedes", slug],
+    queryFn: () => api.getGame(slug),
   });
 };
 
