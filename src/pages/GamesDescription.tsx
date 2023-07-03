@@ -11,6 +11,7 @@ import ExpandableText from "../components/ExpandableText";
 import GameDesDetails from "../components/GameDesDetails";
 import useGameDescription from "../hooks/useGameDescription";
 import CriticScore from "../components/CriticScore";
+import Trailer from "../components/Trailer";
 
 const GamesDescription = () => {
   const params = useParams();
@@ -20,7 +21,7 @@ const GamesDescription = () => {
   // const api = new ApiClient<GameDescriptionProps>(`/games/${params.id}`);
 
   if (isLoading) return <Spinner />;
-  if (error) throw error;
+  if (error || !game) throw error;
   return (
     <>
       <Heading>{game?.name}</Heading>
@@ -53,6 +54,7 @@ const GamesDescription = () => {
           </GameDesDetails>
         </GridItem>
       </Grid>
+      <Trailer id={game.id} />
     </>
   );
 };

@@ -29,6 +29,9 @@ class ApiClient<T> {
   getGame = (id: string | number) => {
     return api.get<T>(this.endpoint + "/" + id).then((res) => res.data);
   };
+  getTrailer = (id: number) => {
+    return api.get<T>(`${this.endpoint}/${id}/movies`).then((res) => res.data);
+  };
 }
 
 export default ApiClient;
