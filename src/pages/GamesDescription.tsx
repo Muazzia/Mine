@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import {
+  Badge,
+  Grid,
+  GridItem,
+  Heading,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import useGames from "../hooks/useGames";
-import { Game } from "../entities/Game";
-import { Button, Heading, Spinner, Text } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import ApiClient, { api } from "../services/api-client";
-import axios from "axios";
-import useGameDescription from "../hooks/useGameDescription";
-import { create } from "zustand";
 import ExpandableText from "../components/ExpandableText";
+import GameDesDetails from "../components/GameDesDetails";
+import useGameDescription from "../hooks/useGameDescription";
+import CriticScore from "../components/CriticScore";
 
 const GamesDescription = () => {
   const params = useParams();
@@ -23,6 +25,34 @@ const GamesDescription = () => {
     <>
       <Heading>{game?.name}</Heading>
       <ExpandableText children={game?.description_raw || ""} />
+      <Grid templateColumns={"1fr 1fr"} marginX={3} as={"dl"} gap={3}>
+        <GridItem>
+          <GameDesDetails heading="Platforms">
+            {game?.parent_platforms.map((p) => (
+              <Text>{p.platform.name}</Text>
+            ))}
+          </GameDesDetails>
+        </GridItem>
+        <GridItem>
+          <GameDesDetails heading="MetricCount">
+            <CriticScore score={game?.metacritic || 0} />
+          </GameDesDetails>
+        </GridItem>
+        <GridItem>
+          <GameDesDetails heading="Genres">
+            {game?.genres.map((g) => (
+              <Text key={g.id}>{g.name}</Text>
+            ))}
+          </GameDesDetails>
+        </GridItem>
+        <GridItem>
+          <GameDesDetails heading="Publishers">
+            {game?.publishers.map((p) => (
+              <Text key={p.id}>{p.name}</Text>
+            ))}
+          </GameDesDetails>
+        </GridItem>
+      </Grid>
     </>
   );
 };
