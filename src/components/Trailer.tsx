@@ -13,13 +13,7 @@ const Trailer = ({ id }: Props) => {
 
   return (
     <Center marginY={5}>
-      <video
-        src={first?.data[480]}
-        poster={first?.preview}
-        controls
-        height={"300"}
-        width={"1000"}
-      />
+      <video src={first?.data[480]} poster={first?.preview} controls />
     </Center>
   );
 };

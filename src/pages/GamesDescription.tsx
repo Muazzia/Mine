@@ -26,40 +26,44 @@ const GamesDescription = () => {
   if (isLoading) return <Spinner />;
   if (error || !game) throw error;
   return (
-    <>
-      <Heading>{game?.name}</Heading>
-      <ExpandableText children={game?.description_raw || ""} />
-      <Grid templateColumns={"1fr 1fr"} marginX={3} as={"dl"} gap={3}>
-        <GridItem>
-          <GameDesDetails heading="Platforms">
-            {game?.parent_platforms.map((p) => (
-              <Text key={p.platform.id}>{p.platform.name}</Text>
-            ))}
-          </GameDesDetails>
-        </GridItem>
-        <GridItem>
-          <GameDesDetails heading="MetricCount">
-            <CriticScore score={game?.metacritic || 0} />
-          </GameDesDetails>
-        </GridItem>
-        <GridItem>
-          <GameDesDetails heading="Genres">
-            {game?.genres.map((g) => (
-              <Text key={g.id}>{g.name}</Text>
-            ))}
-          </GameDesDetails>
-        </GridItem>
-        <GridItem>
-          <GameDesDetails heading="Publishers">
-            {game?.publishers.map((p) => (
-              <Text key={p.id}>{p.name}</Text>
-            ))}
-          </GameDesDetails>
-        </GridItem>
-      </Grid>
-      <Trailer id={game.id} />
-      <GameScreenShot id={game.id} />
-    </>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3}>
+      <Box>
+        <Heading>{game?.name}</Heading>
+        <ExpandableText children={game?.description_raw || ""} />
+        <Grid templateColumns={"1fr 1fr"} marginX={3} as={"dl"} gap={3}>
+          <GridItem>
+            <GameDesDetails heading="Platforms">
+              {game?.parent_platforms.map((p) => (
+                <Text key={p.platform.id}>{p.platform.name}</Text>
+              ))}
+            </GameDesDetails>
+          </GridItem>
+          <GridItem>
+            <GameDesDetails heading="MetricCount">
+              <CriticScore score={game?.metacritic || 0} />
+            </GameDesDetails>
+          </GridItem>
+          <GridItem>
+            <GameDesDetails heading="Genres">
+              {game?.genres.map((g) => (
+                <Text key={g.id}>{g.name}</Text>
+              ))}
+            </GameDesDetails>
+          </GridItem>
+          <GridItem>
+            <GameDesDetails heading="Publishers">
+              {game?.publishers.map((p) => (
+                <Text key={p.id}>{p.name}</Text>
+              ))}
+            </GameDesDetails>
+          </GridItem>
+        </Grid>
+      </Box>
+      <Box>
+        <Trailer id={game.id} />
+        <GameScreenShot id={game.id} />
+      </Box>
+    </SimpleGrid>
   );
 };
 
