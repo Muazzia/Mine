@@ -29,7 +29,7 @@ const GamesDescription = () => {
         <GridItem>
           <GameDesDetails heading="Platforms">
             {game?.parent_platforms.map((p) => (
-              <Text>{p.platform.name}</Text>
+              <Text key={p.platform.id}>{p.platform.name}</Text>
             ))}
           </GameDesDetails>
         </GridItem>
