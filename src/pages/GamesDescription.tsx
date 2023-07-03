@@ -1,8 +1,10 @@
 import {
   Badge,
+  Box,
   Grid,
   GridItem,
   Heading,
+  SimpleGrid,
   Spinner,
   Text,
 } from "@chakra-ui/react";
@@ -12,6 +14,7 @@ import GameDesDetails from "../components/GameDesDetails";
 import useGameDescription from "../hooks/useGameDescription";
 import CriticScore from "../components/CriticScore";
 import Trailer from "../components/Trailer";
+import GameScreenShot from "../components/GameScreenShot";
 
 const GamesDescription = () => {
   const params = useParams();
@@ -55,6 +58,7 @@ const GamesDescription = () => {
         </GridItem>
       </Grid>
       <Trailer id={game.id} />
+      <GameScreenShot id={game.id} />
     </>
   );
 };
